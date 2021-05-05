@@ -70,8 +70,7 @@
             </div>
 
 
-            <div class="container col-md-6 col-sm-12 order-md-2"
-                style="position:relative; display: inline-block;">
+            <div class="container col-md-6 col-sm-12 order-md-2" style="position:relative; display: inline-block;">
                 <img class="img-fluid"
                     style="position:absolute; left:0;right:0;display: block; width: 100%;z-index: -1 "
                     src="img/tarjeta_2.png" alt="">
@@ -99,7 +98,6 @@
                 <br><br>
             </div>
         </div>
-        <div class="w-100"></div>
         <div class="col-12">
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="terminos" required>
@@ -144,8 +142,7 @@
                     return false;
                 }
 
-                if($("#txtTarjeta").val().length < 16)
-                {
+                if ($("#txtTarjeta").val().length < 16) {
                     swal("El número de la tarjeta de crédito debe tener 16 dígitos", "", "error");
                     $("#txtTarjeta").css("border-color", "red");
                     $("#txtTarjeta").effect("shake");
@@ -244,15 +241,15 @@
             });
 
             $('#txtNombre').keypress(function () {
-                if ($(this).val().length >= 16) {
-                    $(this).val($(this).val().slice(0, 14));
+                if ($(this).val().length >= 17) {
+                    $(this).val($(this).val().slice(0, 17));
                     return false;
                 }
             });
 
             $('#txtApellido').keypress(function () {
-                if ($(this).val().length >= 16) {
-                    $(this).val($(this).val().slice(0, 14));
+                if ($(this).val().length >= 17) {
+                    $(this).val($(this).val().slice(0, 17));
                     return false;
                 }
             });
@@ -267,6 +264,18 @@
             $('#txtDocumento').keypress(function () {
                 if ($(this).val().length >= 15) {
                     $(this).val($(this).val().slice(0, 15));
+                    return false;
+                }
+            });
+
+            $('#txtNombre').keypress(function (e) {
+                var regex = new RegExp("^[a-zA-Z ]+$");
+                var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+                if (regex.test(str)) {
+                    return true;
+                }
+                else {
+                    e.preventDefault();
                     return false;
                 }
             });
