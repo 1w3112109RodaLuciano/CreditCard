@@ -143,8 +143,25 @@
                     return false;
                 }
 
+                if($("#txtTarjeta").val().length < 16)
+                {
+                    swal("El número de la tarjeta de crédito debe tener 16 dígitos", "", "error");
+                    $("#txtTarjeta").css("border-color", "red");
+                    $("#txtTarjeta").effect("shake");
+                    $("#txtTarjeta").focus();
+                    return false;
+                }
+
                 if ($("#fechaVencimiento").val() == "") {
                     swal("Debe ingresar la fecha de vencimiento de la tarjeta", "", "error");
+                    $("#fechaVencimiento").css("border-color", "red");
+                    $("#fechaVencimiento").effect("bounce");
+                    $("#fechaVencimiento").focus();
+                    return false;
+                }
+
+                if ($("#fechaVencimiento").val().length < 4) {
+                    swal("Debe ingresar el mes y año de vencimiento (MMAA)", "", "error");
                     $("#fechaVencimiento").css("border-color", "red");
                     $("#fechaVencimiento").effect("bounce");
                     $("#fechaVencimiento").focus();
@@ -159,7 +176,15 @@
                     return false;
                 }
 
-                if ($("#dpDocumento").selectedIndex == 0) {
+                if ($("#codigoSeguridad").val().length < 3) {
+                    swal("El código de seguridad debe tener 3 dígitos", "", "error");
+                    $("#codigoSeguridad").css("border-color", "red");
+                    $("#codigoSeguridad").effect("bounce");
+                    $("#codigoSeguridad").focus();
+                    return false;
+                }
+
+                if ($("#dpDocumento").prop('selectedIndex') == 0) {
                     swal("Debe seleccionar un tipo de Documento", "", "error");
                     $("#dpDocumento").css("border-color", "red");
                     $("#dpDocumento").effect("bounce");
@@ -213,6 +238,20 @@
             $('#codigoSeguridad').keypress(function () {
                 if ($(this).val().length >= 3) {
                     $(this).val($(this).val().slice(0, 3));
+                    return false;
+                }
+            });
+
+            $('#txtNombre').keypress(function () {
+                if ($(this).val().length >= 16) {
+                    $(this).val($(this).val().slice(0, 14));
+                    return false;
+                }
+            });
+
+            $('#txtApellido').keypress(function () {
+                if ($(this).val().length >= 16) {
+                    $(this).val($(this).val().slice(0, 14));
                     return false;
                 }
             });
